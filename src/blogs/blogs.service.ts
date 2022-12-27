@@ -43,4 +43,8 @@ export class BlogsService {
         );
         return result;
     }
+
+    async deleteBlogByBlogId(blogId) {
+        return await this.blogsRepository.deleteBlogById(blogId);
+    }
 }

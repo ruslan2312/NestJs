@@ -43,4 +43,10 @@ export class BlogsRepository {
             },
         );
     }
+    async deleteBlogById(blogId) {
+        return this.blogModel.deleteOne({ id: blogId });
+    }
+    async deleteAllBlogs() {
+        return this.blogModel.deleteMany({});
+    }
 }

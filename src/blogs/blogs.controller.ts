@@ -4,6 +4,7 @@ import {
     Delete,
     Get,
     HttpCode,
+    NotFoundException,
     Param,
     Post,
     Put,
@@ -29,5 +30,13 @@ export class BlogsController {
         @Body() updateModel: CreateBlogInputModelType,
     ) {
         return this.blogsService.updateBlogByBlogId(blogId, updateModel);
+    }
+    @Delete(':blogId')
+    @HttpCode(204)
+    async deleteBlogByBlogId(@Param('blogId') blogId) {
+        const result = await this.blogsService.deleteBlogByBlogId(blogId);
+        if (!result) {
+            throw new NotFoundException();
+        }
     }
 }
